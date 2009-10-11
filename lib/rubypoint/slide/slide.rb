@@ -25,7 +25,6 @@ EOF
   
   def init_from_new
     @slide_id  = presentation.next_slide_id
-    @rel_id    = presentation.next_presentation_rel_id
     @file_path = presentation.slide_directory + "/slide#{@slide_id}.xml"
     self.objects << RubyPoint::Slide::Rel.new(self)
     presentation.slides << self

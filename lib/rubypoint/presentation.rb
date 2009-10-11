@@ -25,6 +25,7 @@ class RubyPoint
         s.write
       end
       presentation_rel.write
+      presentation_xml.write
       if ::File.exist?(file_path)
         force ? system("rm -f #{file_path}") : raise("#{file_path} already exists")
       end
@@ -32,7 +33,7 @@ class RubyPoint
     end
   
     def clean_file_directory
-      system("rm -rf #{file_directory}")
+      system("rm -r #{file_directory}")
     end
     
     ### PRESENTATION PARTS
@@ -50,6 +51,11 @@ class RubyPoint
     def presentation_rel
       @presentation_rel ||= RubyPoint::PresentationRel.new(self)
     end
+    
+    def presentation_xml
+      @presentation_xml ||= RubyPoint::Presentation::Presentation.new(self)
+    end
+    
   
     def new_slide
       RubyPoint::Slide.new(self)
