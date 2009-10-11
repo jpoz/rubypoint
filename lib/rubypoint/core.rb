@@ -1,3 +1,4 @@
+gem 'hpricot', '>= 0.8.1'
 require 'hpricot'
 require 'rubypoint/presentation'
 require 'rubypoint/element'

@@ -6,6 +6,8 @@ require 'rake/gempackagetask'
 require 'rubygems/specification'
 require 'date'
 
+autoload :RubyPoint, 'lib/rubypoint'
+
 desc "Run dhem speccczzz"
 Spec::Rake::SpecTask.new do |t|
   t.spec_opts = ['--options', "\"#{File.dirname(__FILE__)}/spec/spec.opts\""]
@@ -36,6 +38,7 @@ spec = Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.autorequire = GEM
   s.add_dependency('zipruby', '>= 0.3.2')
+  s.add_dependency('hpricot', '>= 0.8.1')
   s.files = %w(MIT-LICENSE README.textile Rakefile) + Dir.glob("{lib}/**/*")
 end
  
@@ -54,3 +57,20 @@ task :make_spec do
     file.puts spec.to_ruby
   end
 end
+
+
+# RubyPoint specific
+
+desc "Decompress a pptx into a folder in tmp/"
+task :decompress, :file_path do |t, args|
+  puts "Decompressing #{args.file_path} into tmp/#{args.file_path}/"
+  RubyPoint.open_doc(args.file_path, "tmp/#{args.file_path}")
+end
+
+desc "Recompress a folder into a pptx"
+task :recompress, :folder_path, :save_path do |t, args|
+  puts "Recompressing #{args.folder_path} into #{args.save_path}"
+  RubyPoint.compress_folder(args.folder_path, args.save_path)
+end
+
+

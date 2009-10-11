@@ -1,4 +1,6 @@
 .DS_Store
 working
 tmp/*
+test/*
+base/*
 example.rb
