@@ -6,8 +6,8 @@ class RubyPoint::Presentation::Presentation < RubyPoint::File
   end
   
   def before_write
-    @presentation.slides do |s|
-      objects << Slide.new(s)
+    @presentation.slides.each do |s|
+      self << Slide.new(s)
     end
   end
   
@@ -31,11 +31,11 @@ EOF
     end
     
     def write
-      @parent.doc.search('//p:sldIdLst').append(self.raw)
+      @parent.doc.search('//p:sldIdLst').html += self.raw
     end
     
     def raw
-      %Q{<p:sldId id="#{255+slide.slide_id}" r:id="#{slide.rel_id}"/>}
+      %Q{<p:sldId id="#{255+slide.slide_id}" r:id="rId#{slide.rel_id.rel_id}"/>}
     end
   end
     

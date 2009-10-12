@@ -63,8 +63,9 @@ end
 
 desc "Decompress a pptx into a folder in tmp/"
 task :decompress, :file_path do |t, args|
-  puts "Decompressing #{args.file_path} into tmp/#{args.file_path}/"
-  RubyPoint.open_doc(args.file_path, "tmp/#{args.file_path}")
+  file_name = args.file_path.split('/').last
+  puts "Decompressing #{args.file_path} into tmp/#{file_name}/"
+  RubyPoint.open_doc(args.file_path, "tmp/#{file_name}")
 end
 
 desc "Recompress a folder into a pptx"

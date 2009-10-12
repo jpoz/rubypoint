@@ -26,6 +26,7 @@ EOF
   def init_from_new
     @slide_id  = presentation.next_slide_id
     @file_path = presentation.slide_directory + "/slide#{@slide_id}.xml"
+    @rel_id    = presentation.add_to_relationships(self)
     self.objects << RubyPoint::Slide::Rel.new(self)
     presentation.slides << self
     @doc       = Hpricot::XML(self.raw_xml)

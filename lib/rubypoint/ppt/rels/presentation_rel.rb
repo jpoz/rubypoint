@@ -19,7 +19,9 @@ class RubyPoint::PresentationRel < RubyPoint::File
   end
   
   def add_relationship_for(object)
-    self.objects << RubyPoint::PresentationRel::Slide.new(self, object)
+    slide_rel = RubyPoint::PresentationRel::Slide.new(self, object)
+    self.objects << slide_rel
+    slide_rel
   end
   
   def doc
