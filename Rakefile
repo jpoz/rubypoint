@@ -39,7 +39,7 @@ spec = Gem::Specification.new do |s|
   s.autorequire = GEM
   s.add_dependency('zipruby', '>= 0.3.2')
   s.add_dependency('hpricot', '>= 0.8.1')
-  s.files = %w(MIT-LICENSE README.textile Rakefile) + Dir.glob("{lib}/**/*")
+  s.files = %w(GPL-LICENSE README.textile Rakefile) + Dir.glob("{lib}/**/*")
 end
  
 Rake::GemPackageTask.new(spec) do |pkg|
