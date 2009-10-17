@@ -74,4 +74,23 @@ task :recompress, :folder_path, :save_path do |t, args|
   RubyPoint.compress_folder(args.folder_path, args.save_path)
 end
 
+desc "Diff two pptxs"
+task :diff, :file1, :file2 do |t, args|
+  puts "Diff of #{args.file1} and #{args.file2}"
+  results = RubyPoint.diff(args.file1, args.file2)
+  results.each do |r|
+    puts r[:path]
+    r[:errors].each do |e|
+      puts "    #{e}"
+    end
+  end
+end
+
+desc "show two pptxs files"
+task :show, :file1, :file2, :path do |t, args|
+  puts "Showing #{args.file1} and #{args.file2}"
+  puts RubyPoint.show(args.file1, args.file2, args.path)
+end
+
+
 

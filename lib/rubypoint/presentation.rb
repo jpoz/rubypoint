@@ -26,6 +26,8 @@ class RubyPoint
       end
       presentation_rel.write
       presentation_xml.write
+      app_xml.write
+      content_types_xml.write
       if ::File.exist?(file_path)
         force ? system("rm -f #{file_path}") : raise("#{file_path} already exists")
       end
@@ -56,6 +58,13 @@ class RubyPoint
       @presentation_xml ||= RubyPoint::Presentation::Presentation.new(self)
     end
     
+    def app_xml
+      @app_xml ||= RubyPoint::App.new(self)
+    end
+    
+    def content_types_xml
+      @content_types_xml ||= RubyPoint::ContentTypes::XML.new(self)
+    end
   
     def new_slide
       RubyPoint::Slide.new(self)
